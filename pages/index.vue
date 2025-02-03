@@ -15,5 +15,5 @@ definePageMeta({
 </script>
 
 <template>
-
+<register></register>
 </template>

@@ -1,5 +1,7 @@
 <template>
-  <Navbar></Navbar>
+  <LayoutMiddleHeader />
   <slot></slot>
   <Footer></Footer>
 </template>
+<script setup lang="ts">
+</script>
