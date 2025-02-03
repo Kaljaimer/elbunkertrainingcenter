@@ -1,7 +1,7 @@
 <script setup>
 useHead({
   htmlAttrs: { lang: "es-ES" },
-  title: "El Bunker Training Center",
+  title: "Bunker Stuntplace",
   meta: [
     {
       name: "description",

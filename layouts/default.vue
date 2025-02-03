@@ -1,7 +1,7 @@
 <template>
   <LayoutMiddleHeader />
   <slot></slot>
-  <Footer></Footer>
+<!--  <Footer></Footer>-->
 </template>
 <script setup lang="ts">
 </script>
