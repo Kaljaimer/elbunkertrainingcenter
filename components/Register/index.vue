@@ -27,13 +27,23 @@
               <p>
                 Si no tienes una cuenta, regístrate con tu nombre de usuario o tu correo electrónico.
               </p>
-              <form>
+              <div>
                 <div class="form-group mb-4">
-                  <label class="label">Usuario *</label>
+                  <label class="label">Nombre *</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Introduzca usuario"
+                    placeholder="Introduzca su nombre"
+                    v-model="name"
+                  />
+                </div>
+                <div class="form-group mb-4">
+                  <label class="label">Apellido(s) *</label>
+                  <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Introduzca su(s) apellido(s)"
+                      v-model="surname"
                   />
                 </div>
                 <div class="form-group mb-4">
@@ -42,6 +52,7 @@
                     type="email"
                     class="form-control"
                     placeholder="Introduzca email"
+                    v-model="email"
                   />
                 </div>
                 <div class="form-group mb-4">
@@ -50,12 +61,15 @@
                     type="password"
                     class="form-control"
                     placeholder="Introduzca contraseña"
+                    v-model="password"
                   />
                 </div>
                 <div class="form-group mb-4">
                   <button
                     type="submit"
                     class="btn btn-warning btn-pill text-white w-100 d-block"
+                    @click="register"
+                    :disabled="!name || !surname || !email || !password"
                   >
                     Registrarse
                   </button>
@@ -71,7 +85,7 @@
                     </NuxtLink>
                   </p>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -80,8 +94,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Register",
-};
+<script setup lang="ts">
+import { ref } from 'vue';
+import { showError } from '~/composables/useToast';
+import router from "#app/plugins/router";
+
+const name = ref('');
+const surname = ref('');
+const email = ref('');
+const password = ref('');
+
+async function register() {
+  const response: any = await usePost(`/users/`, {
+    username: email.value,
+    email: email.value,
+    password: password.value,
+    name: name.value,
+    lastname: surname.value,
+  });
+  if (response?.error?.value) {
+    showError(response);
+  } else {
+    showSuccess('Usuario registrado correctamente');
+    navigateTo(`/`);
+  }
+}
 </script>

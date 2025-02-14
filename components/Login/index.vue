@@ -23,15 +23,16 @@
                 </li>
               </ul>
               <p>
-                Si tienes una cuenta, inicia sesión con tu nombre de usuario o tu email.
+                Si tienes una cuenta, inicia sesión con tu email.
               </p>
-              <form>
+              <div>
                 <div class="form-group mb-4">
-                  <label class="label">Usuario o email *</label>
+                  <label class="label">Email *</label>
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="Introduce usuario o email"
+                    placeholder="Introduce email"
+                    v-model="username"
                   />
                 </div>
                 <div class="form-group mb-4">
@@ -40,32 +41,32 @@
                     type="password"
                     class="form-control"
                     placeholder="Introduce contraseña"
+                    v-model="password"
                   />
                 </div>
                 <div class="d-flex justify-content-between mb-4">
                   <div class="form-check">
                     <input
-                      class="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckDefault"
+                        v-model="rememberMe"
                     />
                     <label class="form-check-label" for="flexCheckDefault">
                       Recordarme
                     </label>
                   </div>
-                  <NuxtLink to="/forgot-password" class="text-primary">
-                    ¿Olvidaste tu contraseña?
-                  </NuxtLink>
+<!--                  <NuxtLink to="/forgot-password" class="text-primary">-->
+<!--                    ¿Olvidaste tu contraseña?-->
+<!--                  </NuxtLink>-->
                 </div>
-                <div class="form-group mb-4">
-                  <button
-                    type="submit"
+                <button
                     class="btn btn-warning btn-pill text-white w-100 d-block"
-                  >
-                    Acceso
-                  </button>
-                </div>
+                    @click="login"
+                >
+                  Acceso
+                </button>
                 <div class="form-group mb-0">
                   <p class="text-secondary ms-1 text-primary">
                     ¿No tienes una cuenta?
@@ -77,7 +78,7 @@
                     </NuxtLink>
                   </p>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -86,8 +87,35 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "Login",
-};
+<script setup lang="ts">
+import { ref } from 'vue';
+import {showError} from '~/composables/useToast';
+
+const username = ref('');
+const password = ref('');
+const rememberMe = ref(false);
+
+onBeforeMount(() => {
+  if (localStorage?.getItem('loggedUser')) {
+    username.value = localStorage.getItem('username') || '';
+    password.value = localStorage.getItem('password') || '';
+    rememberMe.value = true;
+  }
+});
+
+async function login(){
+  const endpointResponse: any = usePost(`/auth/`,{username: username.value, password: password.value});
+  endpointResponse.then((response: any) => {
+    if (!response.error?.value) {
+      if (rememberMe) {
+        localStorage.setItem('username', username.value);
+        localStorage.setItem('password', password.value);
+      }
+      localStorage.setItem('loggedUser', JSON.stringify(response.data.value));
+      navigateTo(`/`);
+    } else {
+      showError(response);
+    }
+  });
+}
 </script>

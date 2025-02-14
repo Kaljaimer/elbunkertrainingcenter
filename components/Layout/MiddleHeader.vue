@@ -1,12 +1,12 @@
 <template>
   <div class="middle-header-area ptb-20">
     <div class="container">
-      <div class="d-lg-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center pl-5 pr-5">
         <div
           class="d-flex align-items-center middle-header-left justify-content-center justify-content-lg-end"
         >
-          <NuxtLink to="/" class="d-none d-lg-block middle-logo">
-            <img src="~/assets/images/logoBunker.svg" alt="logo" width="300" />
+          <NuxtLink to="/" class="d-lg-block middle-logo">
+            <img src="../../assets/images/logoBunker.svg" alt="logo" width="150" />
           </NuxtLink>
         </div>
 
@@ -16,15 +16,25 @@
           <li class="buy-info">
             <NuxtLink to="/login" class="text-decoration-none header-button-text">
               <div class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                  <i class="ri-user-line"></i>
-                </div>
+                <v-icon class="mdi mdi-exit-to-app" style="line-height: 35px;"></v-icon>
                 <div class="flex-grow-1 ms-10 header-button-text">
-                  <span>Acceso</span>
+                  <span>Salir</span>
                 </div>
               </div>
             </NuxtLink>
           </li>
+<!--          <li class="buy-info">-->
+<!--            <NuxtLink to="/login" class="text-decoration-none header-button-text">-->
+<!--              <div class="d-flex align-items-center">-->
+<!--                <div class="flex-shrink-0">-->
+<!--                  <i class="ri-user-line"></i>-->
+<!--                </div>-->
+<!--                <div class="flex-grow-1 ms-10 header-button-text">-->
+<!--                  <span>Acceso</span>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </NuxtLink>-->
+<!--          </li>-->
 <!--          <li class="buy-info">-->
 <!--            <div class="dropdown">-->
 <!--              <a-->

@@ -1,4 +1,6 @@
 <script setup>
+import Alert from "~/components/Alert.vue";
+
 useHead({
   htmlAttrs: { lang: "es-ES" },
   title: "Bunker Stuntplace",
@@ -18,5 +20,6 @@ useHead({
 <template>
   <NuxtLayout>
     <NuxtPage />
+    <Alert />
   </NuxtLayout>
 </template>

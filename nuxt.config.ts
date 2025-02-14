@@ -4,6 +4,9 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  experimental: {
+    renderJsonPayloads: false
+  },
   vite: {
     plugins: [
       tailwindcss(),
