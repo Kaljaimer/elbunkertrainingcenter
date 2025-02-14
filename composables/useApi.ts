@@ -17,7 +17,7 @@ interface ErrorDetails {
  */
 const env = import.meta.env;
 // const backendURL = 'http://127.0.0.1:8000/api';
-const backendURL = 'http://p01--elbunker--px8448vvktxh.code.run/api';
+const backendURL = 'https://p01--elbunker--px8448vvktxh.code.run/api';
 
 const messageResponse = (ctx: any) => {
     if (!ctx.response || !ctx.data) return;
@@ -262,6 +262,7 @@ function setFetchOptions() {
     let useRequestFetchOptions: any = {
         mode: 'cors',
         headers: {
+            Accept: 'application/json',
             'Content-Type': 'application/json',
             Authorization: user ? `Token ${JSON.parse(user).token}` : '',
         },
