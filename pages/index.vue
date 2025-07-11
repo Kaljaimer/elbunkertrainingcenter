@@ -1,6 +1,7 @@
 <script setup>
 import {showError} from "~/composables/useToast.ts";
 import CheckIn from "~/components/checkIn.vue";
+import AdminPanel from "~/pages/admin-panel.vue";
 
 const { data: page } = await useAsyncData("index", () =>
   queryContent("/").findOne()
@@ -32,5 +33,8 @@ onBeforeMount(() => {
 
 <template>
 <login v-if="!userAlreadyLogged"></login>
-<checkIn v-else :user="user"></checkIn>
+<!--<checkIn v-else :user="user"></checkIn>-->
+  <div class="pa-10">
+    <admin-panel></admin-panel>
+  </div>
 </template>
