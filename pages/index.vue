@@ -33,8 +33,8 @@ onBeforeMount(() => {
 
 <template>
 <login v-if="!userAlreadyLogged"></login>
-<!--<checkIn v-else :user="user"></checkIn>-->
-  <div class="pa-10">
-    <admin-panel></admin-panel>
-  </div>
+<checkIn v-else-if="!user.is_superuser" :user="user"></checkIn>
+<div v-else class="pa-10">
+  <admin-panel></admin-panel>
+</div>
 </template>
