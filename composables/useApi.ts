@@ -16,8 +16,8 @@ interface ErrorDetails {
  * ENV
  */
 const env = import.meta.env;
-const backendURL = 'http://127.0.0.1:8000/api';
-// const backendURL = 'https://p01--elbunker--px8448vvktxh.code.run/api';
+// const backendURL = 'http://127.0.0.1:8000/api';
+const backendURL = 'https://p01--elbunker--px8448vvktxh.code.run/api';
 
 const messageResponse = (ctx: any) => {
     if (!ctx.response || !ctx.data) return;
