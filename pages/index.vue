@@ -34,7 +34,7 @@ onBeforeMount(() => {
 <template>
 <login v-if="!userAlreadyLogged"></login>
 <checkIn v-else-if="!user.is_superuser" :user="user"></checkIn>
-<div v-else class="pa-10">
+<div v-else>
   <admin-panel></admin-panel>
 </div>
 </template>

@@ -2,8 +2,7 @@
 
 import {showError} from "~/composables/useToast";
 
-const data = ref([]);
-const loaded = ref(false);
+const data = ref(null);
 
 onBeforeMount(async () => {
   const response = await useGet(`/check-ins/`);
@@ -18,7 +17,6 @@ onBeforeMount(async () => {
   } else {
     showError(response);
   }
-  loaded.value = true;
 })
 
 const headers = [
@@ -29,11 +27,8 @@ const headers = [
 </script>
 
 <template>
-  <v-card v-if="loaded" class="card">
+  <v-card v-if="data" class="card" style="margin: 50px;">
     <DataTable :data="data" :headers="headers" :exportExcel="false"></DataTable>
-  </v-card>
-  <v-card v-else class="card">
-    <v-progress-circular indeterminate color="primary" />
   </v-card>
 </template>
 

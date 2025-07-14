@@ -90,6 +90,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import {showError} from '~/composables/useToast';
+import {backendURL, usePostExternal} from "~/composables/useApi";
 
 const username = ref('');
 const password = ref('');
@@ -104,7 +105,7 @@ onBeforeMount(() => {
 });
 
 async function login(){
-  const endpointResponse: any = usePost(`/auth/`,{username: username.value, password: password.value});
+  const endpointResponse: any = usePostExternal(`${backendURL}/auth/`,{username: username.value, password: password.value});
   endpointResponse.then((response: any) => {
     if (!response.error?.value) {
       if (rememberMe) {
